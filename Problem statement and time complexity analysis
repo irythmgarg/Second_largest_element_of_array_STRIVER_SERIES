@@ -1,0 +1,158 @@
+Problem Statement: The goal is to find the largest and second-largest elements in an array without sorting. Sorting the array would increase the complexity to 
+𝑂(𝑛log𝑛)
+O(nlogn), but this approach achieves it in 
+𝑂(𝑛)O(n).
+
+Approach:
+Use two variables, maxi and max2, initialized to the smallest possible integer value (INT_MIN).
+Traverse the array once:
+If the current element is greater than maxi, update max2 to maxi and maxi to the current element.
+Otherwise, if the current element is greater than max2 but less than maxi, update max2.
+Complexity:
+
+Time Complexity: 
+𝑂(𝑛)
+O(n), as the array is traversed only once.
+Space Complexity: 
+𝑂(1)
+O(1), as no extra space is used apart from the variables.
+Edge Cases:
+
+Array with all identical elements: Second largest does not exist.
+Single-element array: Second largest does not exist.
+Array with all negative numbers.
+
+
+
+Below is the commented version of the code to find the second largest element of the array without sorting, along with detailed theory and algorithm explanation.
+
+Theory
+Problem Statement: The goal is to find the largest and second-largest elements in an array without sorting. Sorting the array would increase the complexity to 
+𝑂
+(
+𝑛
+log
+⁡
+𝑛
+)
+O(nlogn), but this approach achieves it in 
+𝑂
+(
+𝑛
+)
+O(n).
+
+Approach:
+
+Use two variables, maxi and max2, initialized to the smallest possible integer value (INT_MIN).
+Traverse the array once:
+If the current element is greater than maxi, update max2 to maxi and maxi to the current element.
+Otherwise, if the current element is greater than max2 but less than maxi, update max2.
+Complexity:
+
+Time Complexity: 
+𝑂
+(
+𝑛
+)
+O(n), as the array is traversed only once.
+Space Complexity: 
+𝑂
+(
+1
+)
+O(1), as no extra space is used apart from the variables.
+Edge Cases:
+
+Array with all identical elements: Second largest does not exist.
+Single-element array: Second largest does not exist.
+Array with all negative numbers.
+Code with Comments
+cpp
+Copy code
+#include<iostream>  // For input-output operations
+#include<vector>    // For using the vector container
+using namespace std;
+
+int main()
+{
+    int elements;
+    // Prompt user to input the number of elements in the array
+    cout << "Enter the number of elements: ";
+    cin >> elements;
+
+    // Declare a vector to store the array elements
+    vector<int> arr(elements);
+    cout << "Enter the elements of the array:\n";
+
+    // Input the elements of the array
+    for(int i = 0; i < elements; i++)
+    {
+        cin >> arr[i];
+    }
+
+    // Initialize variables to store the largest and second largest elements
+    int maxi = INT_MIN; // Largest element
+    int max2 = INT_MIN; // Second largest element
+
+    // Traverse the array to find the largest and second largest elements
+    for(int i = 0; i < elements; i++)
+    {
+        if(arr[i] > maxi) 
+        {
+            // If the current element is greater than 'maxi', update 'max2' to 'maxi' 
+            // and then update 'maxi' to the current element
+            max2 = maxi;
+            maxi = arr[i];
+        }
+        else if(arr[i] > max2 && arr[i] < maxi) 
+        {
+            // If the current element is greater than 'max2' but less than 'maxi',
+            // update 'max2' to the current element
+            max2 = arr[i];
+        }
+    }
+
+    // Output the results
+    cout << "The largest element is: " << maxi << endl;
+    if(max2 == INT_MIN)
+    {
+        cout << "The second largest element does not exist." << endl;
+    }
+    else
+    {
+        cout << "The second largest element is: " << max2 << endl;
+    }
+
+    return 0;
+}
+Algorithm Explanation
+Input Reading:
+
+Read the size of the array elements.
+Create a vector arr of size 𝑒𝑙𝑒𝑚𝑒𝑛𝑡𝑠
+elements to hold the array elements.
+Input each element of the array using a loop.
+Initialization:
+
+Initialize two variables:
+maxi: Tracks the largest element, initialized to INT_MIN.
+max2: Tracks the second largest element, initialized to INT_MIN.
+Array Traversal:
+
+Loop through the array:
+If the current element is greater than maxi:
+Update max2 to the current value of maxi.
+Update maxi to the current element.
+Otherwise, if the current element is greater than max2 and less than maxi:
+Update max2 to the current element.
+Output:
+
+Print maxi as the largest element.
+Check if max2 is still INT_MIN:
+If true, no second largest element exists (e.g., when all elements are identical or there is only one element).
+Otherwise, print max2 as the second largest element.
+Key Points
+The use of INT_MIN ensures that even negative numbers are handled correctly.
+Efficient as the array is traversed only once.
+Includes edge case handling for arrays where the second largest element does not exist.
