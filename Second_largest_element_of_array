@@ -1,0 +1,56 @@
+#include<iostream>  // For input-output operations
+#include<vector>    // For using the vector container
+using namespace std;
+
+int main()
+{
+    int elements;
+    // Prompt user to input the number of elements in the array
+    cout << "Enter the number of elements: ";
+    cin >> elements;
+
+    // Declare a vector to store the array elements
+    vector<int> arr(elements);
+    cout << "Enter the elements of the array:\n";
+
+    // Input the elements of the array
+    for(int i = 0; i < elements; i++)
+    {
+        cin >> arr[i];
+    }
+
+    // Initialize variables to store the largest and second largest elements
+    int maxi = INT_MIN; // Largest element
+    int max2 = INT_MIN; // Second largest element
+
+    // Traverse the array to find the largest and second largest elements
+    for(int i = 0; i < elements; i++)
+    {
+        if(arr[i] > maxi) 
+        {
+            // If the current element is greater than 'maxi', update 'max2' to 'maxi' 
+            // and then update 'maxi' to the current element
+            max2 = maxi;
+            maxi = arr[i];
+        }
+        else if(arr[i] > max2 && arr[i] < maxi) 
+        {
+            // If the current element is greater than 'max2' but less than 'maxi',
+            // update 'max2' to the current element
+            max2 = arr[i];
+        }
+    }
+
+    // Output the results
+    cout << "The largest element is: " << maxi << endl;
+    if(max2 == INT_MIN)
+    {
+        cout << "The second largest element does not exist." << endl;
+    }
+    else
+    {
+        cout << "The second largest element is: " << max2 << endl;
+    }
+
+    return 0;
+}
